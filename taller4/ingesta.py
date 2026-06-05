@@ -10,19 +10,38 @@ db = cliente["taller4_db"]
 # Colección
 coleccion = db["raw_data"]
 
+# Limpiar colección
+coleccion.delete_many({})
+
 # URL API
 url = "https://thronesapi.com/api/v2/Characters"
 
-# Solicitud GET
+# Obtener datos
 respuesta = requests.get(url)
 
-# JSON RAW
 datos = respuesta.json()
 
-# Limpiar colección (opcional)
-coleccion.delete_many({})
+# Lista final
+datos_finales = []
 
-# Insertar datos
-coleccion.insert_many(datos)
+# Repetir registros hasta superar 100
+while len(datos_finales) < 100:
 
-print("Ingesta completada correctamente")
+    for personaje in datos:
+
+        # Copia del documento
+        nuevo_personaje = personaje.copy()
+
+        # Eliminar _id si existe
+        nuevo_personaje.pop("_id", None)
+
+        datos_finales.append(nuevo_personaje)
+
+        # Detener exactamente en 100
+        if len(datos_finales) >= 100:
+            break
+
+# Insertar documentos
+coleccion.insert_many(datos_finales)
+
+print(f"Total registros insertados: {len(datos_finales)}")
