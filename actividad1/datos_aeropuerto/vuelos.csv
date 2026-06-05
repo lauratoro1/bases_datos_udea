@@ -1,0 +1,13 @@
+id_vuelo,origen,destino,aerolinea
+1,Pereira,Bogota,EasyFly
+2,Bogota,Cali,EasyFly
+3,Cali,Bucaramanga,Avianca
+4,Pereira,Bucaramanga,EasyFly
+5,Cali,Manizales,Satena
+6,Pereira,Medellin,Avianca
+7,Barranquilla,Bogota,LatAm
+8,Cali,Cucuta,Satena
+9,Santa_Marta,Bogota,Wingo
+10,Cartagena,Barranquilla,Wingo
+11,Bogota,Manizales,Satena
+12,Cucuta,Manizales,Avianca
